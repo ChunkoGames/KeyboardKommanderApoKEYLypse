@@ -12,7 +12,7 @@ public class TextReader : MonoBehaviour {
 	GUIStyle largeFont;
 	public string currentString; //this is the string the user has currently entered
 	public bool capslock = false;
-
+	private float timeSinceBackSpace = 0.0f;
 	public WeaponManager wm;
 	public Weapon cw; //current weapon
 
@@ -111,65 +111,65 @@ public class TextReader : MonoBehaviour {
 	/// </summary>
 	void Update (){
 		//check for Space, Backspace and delete. Else if is used to minimize computations
-		if(Input.GetKeyUp(KeyCode.Space)){
-			checkForKills();
-			currentString = "";
-			return;
-		}
+
 		/*if(Input.GetKeyUp (KeyCode.CapsLock)){
 			Debug.Log("Caps lock pressed");
 			if(capslock){capslock = false;}
 			else{capslock = true;}
 		}*/
-		if(Input.GetKeyDown (KeyCode.Backspace)){ //if pressed cut the combo in half
-			try{
-				upgrades.currentCombo--;
-				upgrades.comboIncrease = 0;
-				if(currentString.Length > 1)
-					currentString = currentString.Substring(0,currentString.Length-1);
-				else
-					currentString = "";
+		if(Input.GetKey (KeyCode.Backspace)){ //if pressed cut the combo in half
+			timeSinceBackSpace +=Time.deltaTime;
+			if(timeSinceBackSpace > .1f || Input.GetKeyUp(KeyCode.Backspace)){
+				timeSinceBackSpace = 0.0f;
 				try{
-					if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
-						upgrades.currentCombo = 1;
-						upgrades.comboIncrease = 0;
+					upgrades.currentCombo--;
+					upgrades.comboIncrease = 0;
+					if(currentString.Length > 1)
+						currentString = currentString.Substring(0,currentString.Length-1);
+					else
+						currentString = "";
+					try{
+						if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
+							upgrades.currentCombo = 1;
+							upgrades.comboIncrease = 0;
+						}
+					catch{
+						upgrades = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>();
+						if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
+						{
+							upgrades.currentCombo = 1;
+							upgrades.comboIncrease = 0;
+						}
 					}
-				catch{
-					upgrades = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>();
-					if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
-					{
-						upgrades.currentCombo = 1;
-						upgrades.comboIncrease = 0;
-					}
-				}
 
-				return;
-			}
-			catch{
-				upgrades = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>();
-				upgrades.currentCombo--;
-
-				try{
-					if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
-					{
-						upgrades.currentCombo = 1;
-						upgrades.comboIncrease = 0;
-					}
+					return;
 				}
 				catch{
 					upgrades = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>();
-					if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
-					{
-						upgrades.currentCombo = 1;
-						upgrades.comboIncrease = 0;
-					}
-				}
+					upgrades.currentCombo--;
 
-				if(currentString.Length > 1)
-					currentString = currentString.Substring(0,currentString.Length-1);
-				else
-					currentString = "";
-				return;
+					try{
+						if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
+						{
+							upgrades.currentCombo = 1;
+							upgrades.comboIncrease = 0;
+						}
+					}
+					catch{
+						upgrades = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>();
+						if (upgrades.currentCombo <1) //Don't let upgrades be less than 1
+						{
+							upgrades.currentCombo = 1;
+							upgrades.comboIncrease = 0;
+						}
+					}
+
+					if(currentString.Length > 1)
+						currentString = currentString.Substring(0,currentString.Length-1);
+					else
+						currentString = "";
+					return;
+				}
 			}
 		}
 		else if(Input.GetKeyUp (KeyCode.Delete)){ //if pressed reset the combo
@@ -355,6 +355,12 @@ public class TextReader : MonoBehaviour {
 				}
 			//}
 		}
+
+		if(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp (KeyCode.Return)){
+			checkForKills();
+			currentString = "";
+			return;
+		}
 	}
 	#endregion
 
@@ -366,6 +372,7 @@ public class TextReader : MonoBehaviour {
 	/// Make a small label displaying currentString, for the main level this will appear over the fort
 	/// </summary>
 	void OnGUI(){
+		largeFont.fontSize = 30;
 
 		if(black){
 			smallFont.normal.textColor = Color.black;
@@ -378,6 +385,6 @@ public class TextReader : MonoBehaviour {
 		}
 
 		stringSize = GUI.skin.GetStyle("label").CalcSize(new GUIContent(currentString)).x;
-		GUI.Label(new Rect(Screen.width/2-stringSize/2, Screen.height-100, stringSize, 100), currentString,smallFont);
+		GUI.Label(new Rect(Screen.width/2-stringSize*1.2f, Screen.height-100, stringSize*2, 100), currentString,largeFont);
 	}
 }

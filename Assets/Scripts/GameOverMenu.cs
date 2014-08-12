@@ -1,4 +1,4 @@
-﻿#define left
+#define left
 using UnityEngine;
 using System.Collections;
 
@@ -92,11 +92,11 @@ public class GameOverMenu : Menu {
 	// Update is called once per frame
 	void Update () {
 		startY = -Screen.height/2+120;
-		if(Input.GetKeyUp(KeyCode.Minus) || Input.GetKeyUp (KeyCode.KeypadMinus) || Input.GetKeyUp (KeyCode.Backslash)){
+		if(Input.GetKeyUp(KeyCode.Minus) || Input.GetKeyUp (KeyCode.KeypadMinus) || Input.GetKeyUp (KeyCode.Backslash) || Input.GetKeyUp (KeyCode.Underscore)){
 			easier();
 		}
 		
-		if(Input.GetKeyUp(KeyCode.Plus) || Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp (KeyCode.Slash)){
+		if(Input.GetKeyUp(KeyCode.Plus) || Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp (KeyCode.Slash) || Input.GetKeyUp(KeyCode.Equals)){
 			harder ();
 		}
 	}
@@ -118,7 +118,7 @@ public class GameOverMenu : Menu {
 		
 		if(guiReady){
 			#if left
-			xJustification =0;
+			xJustification =25;
 			#else
 			xJustification = Screen.width.2;
 			#endif
@@ -128,8 +128,8 @@ public class GameOverMenu : Menu {
 			
 			GUI.Label(new Rect(xJustification, 50, 100, 100), "High Skore: " + Upgrades_upgrades.highScore,smallFont);
 			GUI.Label(new Rect(xJustification, 100, 100, 100), "Your Skore: " + Upgrades_upgrades.currentScore,smallFont);
-			
-			GUI.Label(new Rect(xJustification, 150, 100, 100), "Type or click a command to continue",smallFont);
+			GUI.Label(new Rect(xJustification, 150, 100, 100), "Highest Kombo: " + Upgrades_upgrades.maximumCombo,smallFont);
+			GUI.Label(new Rect(xJustification, 200, 100, 100), "Zombie Kills: " + Upgrades_upgrades.Kills,smallFont);
 			GUI.skin.button.fontSize = 25;
 			//initialize the buttons
 			/*if(GUI.Button(new Rect(xJustification, Screen.height -180, 240, 40), "Instructions")){
@@ -159,13 +159,16 @@ public class GameOverMenu : Menu {
 				break;
 			}
 			
-			GUI.Label(new Rect(xJustification, 100, 100, 100), "Difficulty: " + string_difficulty,smallFont);
+			
+			GUI.Label(new Rect(xJustification, 250, 100, 100), "Type or click a command to continue",smallFont);
+			GUI.Label(new Rect(xJustification, 300, 100, 100), "Difficulty: " + string_difficulty,smallFont);
+
 			//TODO: add buttons to increment and decrement difficulty
-			if(GUI.Button(new Rect(xJustification+500, 100, 200, 40), "Harder (\\)")){
+			if(GUI.Button(new Rect(xJustification+500, 300, 200, 40), "Harder (+)")){
 				//Clear Upgrades
 				harder();
 			}
-			if(GUI.Button(new Rect(xJustification+700, 100, 200, 40), "Easier (/)")){
+			if(GUI.Button(new Rect(xJustification+700, 300, 200, 40), "Easier (-)")){
 				//Clear Upgrades
 				easier();
 			}
@@ -180,11 +183,11 @@ public class GameOverMenu : Menu {
 				Application.LoadLevel ("Basic");
 			}
 			
-			/*if(GUI.Button(new Rect(xJustification, Screen.height - 100, 240, 40), "mainmenu")){
+			if(GUI.Button(new Rect(xJustification, Screen.height - 100, 240, 40), "mainmenu")){
 				//Clear Upgrades
 				Debug.Log ("Main Menu Clicked");
 				Application.LoadLevel ("MainMenu");
-			}*/
+			}
 			if(GUI.Button(new Rect(xJustification, Screen.height - 180, 240, 40), "instructions")){
 				//Clear Upgrades
 				Debug.Log ("Instructions Clicked");

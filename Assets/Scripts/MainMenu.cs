@@ -76,11 +76,11 @@ public class MainMenu : Menu {
 	// Update is called once per frame
 	void Update () {
 		startY = -Screen.height/2+120;
-		if(Input.GetKeyUp(KeyCode.Minus) || Input.GetKeyUp (KeyCode.KeypadMinus) || Input.GetKeyUp (KeyCode.Backslash)){
+		if(Input.GetKeyUp(KeyCode.Minus) || Input.GetKeyUp (KeyCode.KeypadMinus) || Input.GetKeyUp (KeyCode.Backslash) || Input.GetKeyUp (KeyCode.Underscore)){
 			easier();
 		}
 
-		if(Input.GetKeyUp(KeyCode.Plus) || Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp (KeyCode.Slash)){
+		if(Input.GetKeyUp(KeyCode.Plus) || Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp (KeyCode.Slash) || Input.GetKeyUp(KeyCode.Equals)){
 			harder ();
 		}
 
@@ -131,7 +131,7 @@ public class MainMenu : Menu {
 
 		if(guiReady){
 #if left
-			xJustification =0;
+			xJustification =25;
 #else
 			xJustification = Screen.width.2;
 #endif
@@ -165,11 +165,11 @@ public class MainMenu : Menu {
 			
 			GUI.Label(new Rect(xJustification, 100, 100, 100), "Difficulty: " + string_difficulty,smallFont);
 			//TODO: add buttons to increment and decrement difficulty
-			if(GUI.Button(new Rect(xJustification+500, 100, 200, 40), "Harder (\\)")){
+			if(GUI.Button(new Rect(xJustification+500, 100, 200, 40), "Harder (+)")){
 				//Clear Upgrades
 				harder();
 			}
-			if(GUI.Button(new Rect(xJustification+700, 100, 200, 40), "Easier (/)")){
+			if(GUI.Button(new Rect(xJustification+700, 100, 200, 40), "Easier (-)")){
 				//Clear Upgrades
 				easier();
 			}

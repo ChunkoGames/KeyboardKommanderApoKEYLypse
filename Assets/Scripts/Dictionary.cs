@@ -17,7 +17,6 @@ public class Dictionary : MonoBehaviour {
 	//todo: set pagelengths to private
 	private int[] pageLengths; //used to store the number of words on each page
 	private ArrayList[] pages; //we want 11 pages so 0-10 0 is 2 characters, 10 is 12 or more
-	private int difficultySetting = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -37,12 +36,14 @@ public class Dictionary : MonoBehaviour {
 		//In order to initialize each letter in the alphabet we iterate through a string containing the entire alphabet
 		//and insert each indivicual element into the pages array at an index correlating to the difficulty (determined by length)
 		//of the string
+#if oneLetterWords
 		string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 		for(int i =0; i <alphabet.Length-2; i++){
 			pages[0].Add(alphabet.Substring(i,1));
 			pageLengths[0]+=1;
 		}
+#endif
 
 		//add the contents from the dictionary
 		while (text != null){
@@ -73,9 +74,12 @@ public class Dictionary : MonoBehaviour {
 		if(text == null || text == ""){
 			text = "ashfbewnnxcyviufhg";
 		}
-		int _difficulty = text.Length - 1;
+		int _difficulty = text.Length - 2;
 		if(_difficulty > 9){ //don't let the difficulty be larger than 9 (prevent out of bounds exception)
 			_difficulty = 9;
+		}
+		else if(_difficulty < 0){
+			_difficulty = 0;
 		}
 		return _difficulty;
 	}
@@ -107,18 +111,14 @@ public class Dictionary : MonoBehaviour {
 	/// <param name="difficulty">Difficulty.</param>
 	/// <param name="howMany">How many.</param>
 	public Stack pickWords(int difficulty, int howMany){
-		if(difficultySetting == -1){
-			difficultySetting = GameObject.FindGameObjectWithTag("Upgrades").GetComponent<Upgrades>().DifficultySetting;
-		}
 		Stack pickWordsList = new Stack(); //initializeStack
 		for(int i = 0; i < howMany; i++){
-			int rDifficulty = UnityEngine.Random.Range (difficulty-i,difficulty+ i); //randomized difficulty. Words become increasingly random towards the end of the stack
+			int randomNess = UnityEngine.Random.Range (-2,2);
+			int rDifficulty = UnityEngine.Random.Range (difficulty-randomNess, difficulty+randomNess); //randomized difficulty. Words become increasingly random towards the end of the stack
 
-
-			rDifficulty += difficultySetting;
 			//Make sure the difficulty is within the range of pages, if it's too low set it to 0, if it's too high set it to 9
 			if(rDifficulty <0){
-				rDifficulty = difficultySetting;
+				rDifficulty = 0;
 			}
 			else if (rDifficulty>9){
 				rDifficulty = 9;

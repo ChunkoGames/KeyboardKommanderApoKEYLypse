@@ -54,7 +54,7 @@ public class ZombieManager : MonoBehaviour {
 	//Tell each of the zombies to move
 	void Update () {
 		timePassed += Time.deltaTime;
-		if( GameObject.FindGameObjectsWithTag("Zombie").Length < maxZombiesOnScreen && timePassed > waitTime && Random.Range (0.0f,10.0f)< spawnRate){
+		if( GameObject.FindGameObjectsWithTag("Zombie").Length < Difficulty_difficulty.MaxZombies && timePassed > waitTime && Random.Range (0.0f,10.0f)< spawnRate){
 			//Randomly determine whether or not to generate a zombie
 			addZombie();
 			timePassed = 0.0f;
@@ -129,8 +129,8 @@ public class ZombieManager : MonoBehaviour {
 		ZombieAI ZAI = goZ.GetComponent<ZombieAI>();
 		//get words for this zombie. Upgrades knows the difficulty settting so it can effectively determine
 		//how many words to give
-		numWords = Difficulty_difficulty.getNumWords();
-		ZAI.setWords(dictionary.pickWords(int_difficulty,numWords*10));
+			///numWords = Difficulty_difficulty.getNumWords();
+		ZAI.setWords(dictionary.pickWords(Difficulty_difficulty.WordLength,Difficulty_difficulty.NumWords*10));
 		ZAI.setStats(int_difficulty,numWords);
 
 	}

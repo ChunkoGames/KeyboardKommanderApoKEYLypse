@@ -1,4 +1,3 @@
-a
 ahorizon
 aok
 aardvark
@@ -5581,8 +5580,6 @@ aztreonam
 azure
 azygous
 azymia
-bte
-b
 bgirl
 bhorizon
 bmeson
@@ -9472,7 +9469,6 @@ byways
 byword
 byzantine
 byzantium
-c
 cclamp
 chorizon
 cration
@@ -16367,7 +16363,6 @@ czech
 czechoslovakia
 czechoslovakian
 czheeseparings
-d
 dday
 dlayer
 da
@@ -20293,7 +20288,6 @@ dysprosium
 dystopia
 dystopian
 dytiscidae
-e
 een
 ea
 each
@@ -23049,9 +23043,6 @@ eyry
 ezochengr
 ezochin
 ezokingr
-fte
-fted
-faon
 fa
 faber
 fabian
@@ -25716,7 +25707,6 @@ fuzzle
 fuzzy
 fv
 fylfot
-g
 gman
 gstring
 ga
@@ -30543,7 +30533,6 @@ hysterocatalepsy
 hysteron
 hystricidae
 hystricomorpha
-i
 ibeam
 ie
 iamb
@@ -34578,7 +34567,6 @@ kyphosis
 kyphosus
 kyrgystan
 kyushu
-l
 lplate
 la
 laager
@@ -37018,7 +37006,6 @@ lysol
 lythraceae
 lythrum
 lytton
-m
 ma
 maalox
 maana
@@ -40937,7 +40924,6 @@ myxophyceae
 myxosporidia
 myxosporidian
 myxovirus
-n
 nt
 na
 nadene
@@ -42584,7 +42570,6 @@ nyssa
 nyssaceae
 nystagmus
 nystatin
-o
 oclock
 oaf
 oahu
@@ -44336,7 +44321,6 @@ ozarks
 ozone
 ozonium
 ozothamnus
-p
 pa
 paanga
 pablum
@@ -50076,7 +50060,6 @@ pyx
 pyxidanthera
 pyxie
 pyxis
-q
 qatar
 qatari
 qc
@@ -50446,8 +50429,7 @@ quotient
 quoties
 quovis
 qurush
-quun
-r
+quun\
 ra
 rabat
 rabato
@@ -53397,7 +53379,6 @@ rynchops
 ryot
 rypticus
 ryukyuan
-s
 sa
 saba
 sabah
@@ -60665,7 +60646,6 @@ szechwan
 ttonnement
 ttonner
 ttons
-t
 tbar
 tjunction
 tman
@@ -64244,7 +64224,6 @@ tyrothricin
 tyto
 tytonidae
 tzar
-u
 uturn
 uakari
 uberous
@@ -66774,7 +66753,6 @@ uxoriousness
 uzbek
 uzbekistan
 uzi
-v
 vday
 va
 vac
@@ -69430,7 +69408,6 @@ wyoming
 wyomingite
 wyrd
 wyvern
-x
 xaxis
 xraying
 xanorphica
@@ -69512,7 +69489,6 @@ xyphophorus
 xyridaceae
 xyridales
 xyris
-y
 yaxis
 yacca
 yach
@@ -69705,7 +69681,6 @@ yunnan
 yup
 yuppie
 yurt
-z
 zaxis
 za
 zaar

@@ -10,6 +10,7 @@ public class HighScore : MonoBehaviour {
 	public int highScore;		//The highest score a player has ever gotten
 	public int currentScore;	//represents total number of letters collected
 	public int letters;			//how many letters you currently have. Letters act as a type of in game currency
+	protected int kills; //how many kills you've gotten so far
 
 	public GUIStyle LargeFont;
 
@@ -24,6 +25,14 @@ public class HighScore : MonoBehaviour {
 		LargeFont = new GUIStyle();
 		LargeFont.fontSize = 50;
 		LargeFont.normal.textColor = Color.blue;
+	}
+
+	public int Kills
+	{
+		get
+		{
+			return kills;
+		}
 	}
 
 	public int DifficultySetting
@@ -45,6 +54,7 @@ public class HighScore : MonoBehaviour {
 		//Combo's are set to 1 because having a combo of 0 doesn't really make sense
 		currentCombo = 1;
 		maximumCombo = 1;
+		kills = 0;
 		
 		//All other values are initialized to 0 because that's all you need
 		currentScore = 0;
@@ -96,7 +106,7 @@ public class HighScore : MonoBehaviour {
 	public void hit(float Difficulty){
 		Difficulty = Difficulty + 1.0f;
 		letters += (int)Difficulty*currentCombo;
-		currentScore += (int)Difficulty*currentCombo*difficultySetting*difficultySetting;
+		currentScore += (int)(Difficulty+1)*currentCombo*(1+difficultySetting)*(1+difficultySetting);
 		comboIncrease++;
 
 		if(comboIncrease > currentCombo){
@@ -118,13 +128,14 @@ public class HighScore : MonoBehaviour {
 			maximumCombo = currentCombo;
 			hit (Difficulty);
 		}
+		kills++;
 	}
 
 	void OnGUI(){
 		if(Application.loadedLevelName == "Basic"){
 			LargeFont.fontSize = 30;
-			GUI.Label(new Rect(20, 70, 100, 100), "Current Score: " + currentScore,LargeFont);
-			GUI.Label(new Rect(20, 100, 100, 100), "Combo: " + currentCombo,LargeFont);
+			GUI.Label(new Rect(20, 100, 100, 100), "Current Score: " + currentScore,LargeFont);
+			GUI.Label(new Rect(20, 150, 100, 100), "Combo: " + currentCombo,LargeFont);
 		}
 	}
 

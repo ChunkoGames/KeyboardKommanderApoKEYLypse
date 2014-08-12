@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TextReader.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Difficulty.cs" Line="62" Column="37" />
+      <File FileName="Assets\Scripts\Dictionary.cs" Line="94" Column="14" />
+      <File FileName="Assets\Scripts\ZombieManager.cs" Line="134" Column="41" />
+      <File FileName="Assets\Scripts\Difficulty.cs" Line="61" Column="43" />
+      <File FileName="Assets\Scripts\TextReader.cs" Line="388" Column="52" />
+      <File FileName="Assets\Scripts\Upgrades.cs" Line="78" Column="1" />
+      <File FileName="Assets\Scripts\HighScore.cs" Line="122" Column="76" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
